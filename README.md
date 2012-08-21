@@ -5,7 +5,7 @@ Workshop materials for an introduction to R by Sam Swift.
 This workshop is designed to be a condensed introduction to working with R and doing statistical programming with collaborators.  No prior experience with R or with programming is expected.  
 
 High-level topics we'll cover include
-#### Intro to R, Part 1
+#### Intro to R, Part 1 (Thursday, 10a-1pm)
 * Why R?
 * Getting to know the R environment
 * importing and exporting data
@@ -14,15 +14,25 @@ High-level topics we'll cover include
 * using packages
 * how to find help
 
-#### Intro to R, Part 2
+#### Intro to R, Part 2 (Thursday, 2-5pm)
 * Manipulating data
 * visualization and plotting (w/ ggplot2)
 * Writing functions
 * Preventing errors and finding bugs
 
-#### Collaborating with Git
-* What is version control
+#### Collaborating with Git (Friday, 10-12pm)
+* What is version control, and why would I use it
 * Basic best-practices in collaborative software development
+
+#### Good Judgment Project's data and code (Friday, 12-1pm)
+* What data do we have and how can I find it?
+* How is all of the code organized in case I want to contribute?
+
+#### Workshop (Friday, 2-5pm)
+* Work with your own data and get help when you're stuck
+* Import your own data
+* Do some cleaning, manipulation, or restructuring
+* Run a statistical test
 
 
 Things to do before we meet
