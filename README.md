@@ -39,6 +39,7 @@ Things to do before we meet
 ---------------------------
 ### Install software
 note: all of this software is open source, free, and cross-platform (Windows, Mac, Linux).  Let me know if you have any trouble installing things before we meet on Thursday morning.
+
 1. Download & Install R:  
   * http://cran.r-project.org/
 2. Download & Install RStudio:
