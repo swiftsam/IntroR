@@ -8,8 +8,8 @@ High-level topics we'll cover include
 #### Intro to R, Part 1 (Thursday, 10a-1pm)
 * Why R?
 * Getting to know the R environment
-* importing and exporting data
 * data types
+* importing and exporting data
 * basic statistics (t-test, linear regression, anova)
 * using packages
 * how to find help
