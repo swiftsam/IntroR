@@ -9,26 +9,32 @@
 ###         https://github.com/echen/ggplot2-tutorial/
 #################################################
 
+library(datasets)
+library(ggplot2)
 #load one of R's built-in sample data sets called movies
 data(movies)
 names(movies)
 
 #R's basic default plotting tools
-hist(movies$rating)
+hist(movies$rating,xlab="Ratings",breaks=50)
 hist(movies$budget)
+
+movies <- subset(movies, budget > 0)
+
 movies$logbudget <- log(movies$budget)
 
 hist(movies$logbudget)
 plot(movies$logbudget ~ movies$rating)
 fit <- lm(movies$logbudget ~ movies$rating)
-abline(fit, col="red")
+summary(fit)
+
+plot(movies$logbudget ~ movies$rating)
+
 
 # ggplot gives us a nicer but quick tool for plotting called qplot
 qplot(rating, data=movies, geom="histogram") 
 
 # if you want full control you use ggplot2's function, ggplot
-ggplot(movies, aes(x=rating)) 
-
 
 data(iris)
 
@@ -70,23 +76,6 @@ qplot(Sepal.Length, Petal.Length, data = iris, color = Species,
 qplot(Sepal.Length, Petal.Length, data = iris, geom = "point")
 qplot(Sepal.Length, Petal.Length, data = iris)
 
-#But we can easily use other types of geoms to create other kinds of plots.
-
-### Barcharts: geom = "bar"
-
-movies = data.frame(
-  director = c("spielberg", "spielberg", "spielberg", "jackson", "jackson"),
-  movie = c("jaws", "avatar", "schindler's list", "lotr", "king kong"),
-  minutes = c(124, 163, 195, 600, 187)
-)
-
-# Plot the number of movies each director has.
-qplot(director, data = movies, geom = "bar", ylab = "# movies")
-# By default, the height of each bar is simply a count.
-
-# But we can also supply a different weight.
-# Here the height of each bar is the total running time of the director's movies.
-qplot(director, weight = minutes, data = movies, geom = "bar", ylab = "total length (min.)")
 
 ### Line charts: geom = "line"
 
@@ -98,8 +87,52 @@ qplot(age, circumference, data = Orange, geom = "line",
       colour = Tree,
       main = "How does orange tree circumference vary with age?")
 
-# We can also plot both points and lines.
-qplot(age, circumference, data = Orange, geom = c("point", "line"), colour = Tree)
+
+data(mtcars)
+head(mtcars)
+mtcars$names <- rownames(mtcars)
+
+# Plots of Frequency x category (Bar Chart)
+qplot(factor(cyl), data=mtcars, geom="bar") # with qplot
+
+ggplot(mtcars, aes(factor(cyl))) +          # with ggplot
+  geom_bar() 
+
+ggplot(mtcars, aes(factor(cyl))) +          # with ggplot and extra tweaks
+  geom_bar(fill="white", color="darkgreen") +
+  xlab("# of Cylinders") +
+  opts(title="Count of Models by # of Cylinders")
+
+# Plots of distribution x category (Box Plot, Violin Plot)
+qplot(factor(cyl), mpg, data = mtcars, geom = "boxplot")   #with qplot
+
+ggplot(mtcars, aes(factor(cyl),mpg)) +          # with ggplot
+  geom_boxplot()
+
+ggplot(mtcars, aes(factor(cyl),mpg)) +          # with ggplot and extras
+  geom_violin() +
+  geom_jitter(color="red") 
+
+ggplot(mtcars, aes(factor(cyl),mpg)) +          # with ggplot and extras
+  geom_violin() +
+  geom_jitter(aes(color=hp)) +
+  geom_text(aes(label=names), size=2)
+
+# Plots of relationship 
+qplot(mpg, hp, data=mtcars, geom="point")      #with qplot
+
+ggplot(mtcars, aes(mpg,hp)) +                 #with ggplot
+  geom_point()
+
+ggplot(mtcars, aes(mpg,hp)) +                 # with ggplot and extras
+  geom_point(aes(color=disp)) +
+  geom_smooth(method="lm")
+
+ggplot(mtcars, aes(mpg,hp)) +                 # with ggplot and extras
+  geom_point(aes(color=disp)) +
+  geom_smooth(method="loess")
+
+
 
 
 
