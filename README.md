@@ -47,6 +47,8 @@ note: all of this software is open source, free, and cross-platform (Windows, Ma
   * http://rstudio.org/
 3. Download & Install Git:
   * http://git-scm.com/downloads
+4. Generate an SSH key for your computer
+  * https://help.github.com/articles/generating-ssh-keys
 
 ### Get the class materials
 1. Open RStudio
