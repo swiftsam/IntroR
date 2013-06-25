@@ -5,40 +5,41 @@ Workshop materials for an introduction to R by Sam Swift.
 This workshop is designed to be a condensed introduction to working with R and doing statistical programming with collaborators.  No prior experience with R or with programming is expected.  
 
 High-level topics we'll cover include
-#### Intro to R, Part 1 (Thursday, 10a-1pm)
-* Why R?
-* Getting to know the R environment
-* data types
+### Introduction to R  (Wed 10:30-12, small group in the lab)
+* what is R and why do we like to use it?
+* installation and set-up
 * importing and exporting data
-* basic statistics (t-test, linear regression, anova)
+* data types
+* basic statistics
 * using packages
 * how to find help
 
-#### Intro to R, Part 2 (Thursday, 2-5pm)
-* Manipulating data
-* visualization and plotting (w/ ggplot2)
-* Writing functions
-* Preventing errors and finding bugs
+### Git & github (Wed Afternoon 12:30 - 2, Huntsman 757)
+* What is version control?
+* installing git and getting started
+* the basic version control workflow
+* best practices in collaborative software development
 
-#### Collaborating with Git (Friday, 10-12pm)
-* What is version control, and why would I use it
-* Basic best-practices in collaborative software development
+### Our data and code (Wed 2:15 - 5:00, Huntsman 757)
+* what data do we have?
+* data and code organization
+* how to get access and contribute
+* how to use existing code to get your questions answered
+* creating reproducible reports
 
-#### Good Judgment Project's data and code (Friday, 12-1pm)
-* What data do we have and how can I find it?
-* How is all of the code organized in case I want to contribute?
+### Intermediate R (Thur Morning 9:30-12, Solomon B35)
+* manipulating data
+* writing & using functions
+* preventing errors and finding bugs
+* data visualization
 
-#### Workshop (Friday, 2-5pm)
-* Work with your own data and get help when you're stuck
-* Import your own data
-* Do some cleaning, manipulation, or restructuring
-* Run a statistical test
-* Visualize something
+### Workshop (Thur Afternoon, 1 -5 pm, Hunstman 757)
+* bring some data and a question and we’ll get it done together
 
 Things to do before we meet
 ---------------------------
 ### Install software
-note: all of this software is open source, free, and cross-platform (Windows, Mac, Linux).  Let me know if you have any trouble installing things before we meet on Thursday morning.
+note: all of this software is open source, free, and cross-platform (Windows, Mac, Linux).  If you have any trouble, try to come by the lab Wed morning.
 
 1. Download & Install R:  
   * http://cran.r-project.org/
