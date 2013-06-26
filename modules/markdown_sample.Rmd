@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="rmd_custom_style.css" />
+```{r echo=FALSE}
+library(xtable)
+source("analysis.R")
+```
+
+A Professional and Reproducible Report
+========================================================
+
+In this R Markdown report we are using sample data and meaningless analyses, but the results look great and they are entirely reproducible!
+
+Tables are a common element in reports,  here's how to make one which looks nice
+```{r results='asis', echo=FALSE}
+print(xtable(CO2[1:15,]), type="html")
+```
+
+You can also embed plots, for example:
+
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+
