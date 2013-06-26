@@ -1,0 +1,40 @@
+Creating a Reproducible Report (part 1)
+=====================================
+
+This report is a demonstration of some of the features of the R Markdown format and process.
+
+#### References
+* [R Markdown](http://www.rstudio.com/ide/docs/r_markdown)
+* [Using R Markdown with RStudio](http://www.rstudio.com/ide/docs/authoring/using_markdown)
+
+Working with Text
+-------------------------------------
+A "markdown" document is a blend of text editing and code.  This is a super powerful tool for removing the ambiguity between your raw data and your written results.  By writing reports in R Markdown (or similar, but generally harder to use alternatives) you and your audience will never have to wonder exactly where a number came from or how it was calculated.  Collect more data?  Don't worry about having to update every number if your report, just re-run it!  Co-authoring a report? Your git and RMarkdown educated collaborator can commit their changes to the report just like code.
+
+You have formatting options like making things *italic* or **bold** and layout options such as 
+
+### Headers
+and 
+
+#### Smaller Headers.
+
+You also have handy tools like 
+* Bulleted
+* Lists
+  * and sublists
+  * of items
+Or even 
+
+1. Numbered
+2. lists
+  1. for items that have a 
+  2. meaningful order
+
+The math types may enjoy the ability to use LaTeX equations
+$\int_0^\infty e^{-x^2} dx=\frac{\sqrt{\pi}}{2}$
+  
+It's also easy to [insert links](http://google.com) or to signify that you've ~~changed your mind~~
+
+
+
+

@@ -1,0 +1,58 @@
+Creating a Reproducible Report (part 2)
+=====================================
+
+This report is a demonstration of some of the features of the R Markdown format and process.
+
+Working with Code
+-------------------------------------
+Of course, if you just wanted to edit text, you probably wouldn't do it in RStudio. The magic is being able to switch between code and text.
+
+### Inserting single values in text.
+Sometimes when you are writing, you just want to reference a single value and have that value tied to the output of your code.  
+```{r}
+# First, define the values whether by calculation or as the output of statistical tests, etc
+golden.ratio <- (1 + sqrt(5)) / 2
+```
+
+Then, while you're writing, you can use that value whenever you want.  The golden ratio (approximately `r golden.ratio`) is a beautiful number.
+
+
+### Inserting blocks of R code
+To insert a block of R code, just define the block with three back-ticks aka [grave-accent](http://en.wikipedia.org/wiki/Grave_accent)'s and {r} to tell it that you're using R.
+```{r }
+x    <- 2 + 2
+x.sq <- x^2
+seq  <- 1:10 * x
+print(seq)
+```
+
+Depending on the report, you may not want the code itself to be output, just the results.
+```{r  echo=FALSE, warning=FALSE, message=FALSE}
+x    <- 2 + 2
+x.sq <- x^2
+seq  <- 1:10 * x
+
+rand <- rnorm(n=10, mean=50, sd=10)
+data <- data.frame(seq, rand)
+
+linear.fit <- lm(rand ~ seq, data=data)
+
+summary(linear.fit)
+```
+
+Even more exciting is embedding plots to illustrate your results
+```{r fig.width=7, fig.height=6, warning=FALSE}
+library(ggplot2)
+ggplot(diamonds, aes(depth, fill = cut)) +
+  geom_density(alpha = 0.2) + 
+  xlim(55, 70)
+```
+
+Some blocks of code may take a long time to run, so you'd prefer not to run them every time you generate your report if you haven't changed anything in that block.
+```{r fig.width=7, fig.height=6, echo=FALSE, warning=FALSE, cache=TRUE}
+library(ggplot2)
+ggplot(diamonds, aes(depth, fill = cut)) +
+  geom_density(alpha = 0.2) + 
+  xlim(55, 70)
+```
+
