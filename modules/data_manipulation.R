@@ -68,10 +68,30 @@ votes.mpaa.action <- ddply(movies, c("mpaa","Action"),
 ### Melting and Casting
 ### aka, long format vs wide format
 
-data(smiths)
-smiths
-smiths.long <- melt(smiths, id.vars=c("subject"))
+id <- 1:30
+cond <- rep(c("indiv","teams","crowd belief","super team","pred market"),times=6)
 
+sample <- data.frame("id" = id, "cond" = cond)
+sample$bs_1040 <- rnorm(30, .3, .35)
+sample$bs_1041 <- rnorm(30, .5, .35)
+sample$bs_1042 <- rnorm(30, .1, .35)
+sample$bs_1043 <- rnorm(30, .7, .35)
+sample$num_logins          <- runif(30, min=0, max=500)
+sample$num_msgs            <- rnorm(30, 15, 20)
+
+# you get data in a "wide format" w/ multiple columns of data per observation
+head(sample)
+
+# you may want data in long format w/ one data point per row
+sample.long <- melt(sample, id.vars=c("id","cond"),
+                    measure.vars  = c("bs_1040","bs_1041","bs_1042","bs_1043"),
+                    variable.name = "ifp_id",
+                    value.name    = "score")
+
+# you might then want to summarize it 
+bs.mean.ifp.cond <- dcast(sample.long, cond ~ ifp_id, value.var="score",fun.aggregate=mean)
+
+# or cast it back into a different wide format
 
 
 
