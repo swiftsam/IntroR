@@ -9,36 +9,87 @@
 ###         https://github.com/echen/ggplot2-tutorial/
 #################################################
 
-library(datasets)
-library(ggplot2)
-#load one of R's built-in sample data sets called movies
+# Load Libraries
+library(datasets) # a package full of sample datasets
+library(ggplot2)  # the best visualization package 
+
+# load some of the same data from datasets
+data(iris)
 data(movies)
-names(movies)
 
-#R's basic default plotting tools
-hist(movies$rating,xlab="Ratings",breaks=50)
-hist(movies$budget)
+###~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### R's basic default plotting tools
+###~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# take a look at what data we have to work with
+head(movies)
+
+# Make a histogram of a continuous variable
+hist(movies$rating) # looks nice and normal
+hist(movies$budget) # oh man, skew city
+
+# if we're interested in movie budgets, we can remove 
+# movies with missing/no budgets
 movies <- subset(movies, budget > 0)
 
+# Add a transformed column for log(budget) to fix that skew
 movies$logbudget <- log(movies$budget)
 
-hist(movies$logbudget)
-plot(movies$logbudget ~ movies$rating)
-fit <- lm(movies$logbudget ~ movies$rating)
-summary(fit)
+# Try that histogram again
+hist(x = movies$logbudget)
+hist(movies$logbudget) # it will assume you mean x if you give it one thing
 
-plot(movies$logbudget ~ movies$rating)
+# A scatterplot with two variables
+plot(x = movies$logbudget, y = movies$rating) # x and y format
+plot(movies$rating ~ movies$logbudget) # formula format
+
+# We can also formally test for a linear relationship
+fit.mov.rat <- lm(movies$rating ~ movies$budget)
+summary(fit.mov.rat)
+
+# and add that line to the plot
+# abline() just knows to take the intercept and beta from a lm
+abline(fit.mov.rat, col="red") 
+
+###~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### ggplot: the newer, nicer, more awesome way to make plots
+###~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# a histogram using ggplot, note the aes() and geom_ parts
+ggplot(movies, aes(x = rating)) +
+  geom_histogram()
+
+# specifying fixed properties
+ggplot(movies, aes(x = rating)) +
+  geom_histogram(color="darkgreen", fill="white", binwidth = .25)
+
+# adding a new layer for density 
+ggplot(movies, aes(x = rating)) +
+  geom_histogram(aes(y = ..density..), 
+                 color="darkgreen", fill="white", binwidth = .25) +
+  geom_density(color="red")
+
+# looking at two variables again
+ggplot(movies, aes(x = year, y = budget)) +
+  geom_point()
+
+# adjust the axis at the time of plotting to take care of skew
+ggplot(movies, aes(x = year, y = budget)) +
+  geom_point() +
+  scale_y_log10()
+
+# add some aesthetics to aid interpretation
+ggplot(movies, aes(x = year, y = budget)) +
+  geom_point(aes(color=rating), alpha=.5) +
+  geom_smooth(aes(linetype=factor(Short)), method="lm", color="red") +
+  scale_y_log10() +
+  labs(title = "Movie budgets by year",
+       x = "Year",
+       y = "Log Budget",
+       color = "Rating",
+       linetype = "Short Film")
 
 
-# ggplot gives us a nicer but quick tool for plotting called qplot
-qplot(rating, data=movies, geom="histogram") 
-
-# if you want full control you use ggplot2's function, ggplot
-
-data(iris)
-
-#What does the data frame contain? We can use the `head` function to look at the first few rows.
 
 head(iris) # by default, head displays the first 6 rows
 head(iris, n = 10) # we can also explicitly set the number of rows to display
@@ -65,6 +116,11 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
 ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
   geom_point(aes(color = Species, size = Petal.Width), alpha = 0.7)
 # By setting the alpha of each point to 0.7, we reduce the effects of overplotting.
+
+
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
+  geom_point(aes(color = Species, size = Petal.Width), alpha = 0.7) +
+  geom_smooth(method="lm", aes(color=Species))
 
 #Finally, let's fix the axis labels and add a title to the plot.
 ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
