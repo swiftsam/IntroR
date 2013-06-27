@@ -47,26 +47,32 @@ head(iris, n = 10) # we can also explicitly set the number of rows to display
 
 #Let's plot `Sepal.Length` against `Petal.Length` using ggplot2's `qplot()` function.
 
-qplot(Sepal.Length, Petal.Length, data = iris)
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
+  geom_point()
 # Plot Sepal.Length vs. Petal.Length, using data from the `iris` data frame.
 
 #To see where each species is located in this graph, we can color each point by adding a `color = Species` argument.
 
-qplot(Sepal.Length, Petal.Length, data = iris, color = Species) # dude!
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
+  geom_point(aes(color=Species)) # dude!
 
 #Similarly, we can let the size of each point denote sepal width, by adding a `size = Sepal.Width` argument.
 
-qplot(Sepal.Length, Petal.Length, data = iris, color = Species, size = Petal.Width)
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
+  geom_point(aes(color = Species, size = Petal.Width))
 # We see that Iris setosa flowers have the narrowest petals.
 
-qplot(Sepal.Length, Petal.Length, data = iris, color = Species, size = Petal.Width, alpha = I(0.7))
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
+  geom_point(aes(color = Species, size = Petal.Width), alpha = 0.7)
 # By setting the alpha of each point to 0.7, we reduce the effects of overplotting.
 
 #Finally, let's fix the axis labels and add a title to the plot.
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
+  geom_point(aes(color = Species, size = Petal.Width), alpha = 0.7) +
+  labs(x = "Sepal Length", 
+       y = "Petal Length", 
+       title = "Sepal vs. Petal Length in Fisher's Iris data")
 
-qplot(Sepal.Length, Petal.Length, data = iris, color = Species,
-      xlab = "Sepal Length", ylab = "Petal Length", 
-      main = "Sepal vs. Petal Length in Fisher's Iris data")
 
 ## Other common geoms
 
